@@ -1,0 +1,42 @@
+// find all the subsets of the given array such that there should not be duplicate subsets and they should be arranged // lexographically
+// https://practice.geeksforgeeks.org/problems/subsets/1/?track=SPC-Back&amp;batchId=154
+========================================================================================
+
+void funUtil(vector<int> &a, set<vector<int>> &res, vector<int> &subset, int in)
+    res.insert(subset);
+    
+    for(int i=in; i<a.size(); i++)
+    {
+        subset.push_back(a[i]);
+        
+        funUtil(a,res,subset,i+1);
+        
+        subset.pop_back();
+    }
+    
+    return;
+}
+
+void func(vector<int> a)
+{
+    set<vector<int>> res;
+    vector<int> subset;
+    sort(a.begin(),a.end());
+    int in=0;
+    funUtil(a,res,subset,in);
+
+    for(auto const&i :res)
+    {
+        cout<<"(";
+        vector<int> temp = i;
+        int size = temp.size();
+        for(int j=0;j<size;j++)
+        {
+            cout<<temp[j];
+            if(j!=size-1)
+            cout<<" ";
+        }
+        cout<<")";
+    }
+    cout<<endl;
+}

@@ -1,0 +1,3 @@
+// https://www.hackerrank.com/challenges/beautiful-triplets/problem?h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen
+
+// first mark an integer arr[i] and then use binary search to find arr[i]+d and arr[i]+2*d if found the increment the counter

@@ -1,0 +1,36 @@
+//https://practice.geeksforgeeks.org/problems/count-only-repeated/0/?track=SPCF-Searching&batchId=154
+// linear search will also work here within the time limit
+
+int repeatingElement(int arr[],int n);
+
+int main() {
+	//code
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    int arr[n];
+	    for(int i=0;i<n;i++)
+	        cin>>arr[i];
+	    int repeatingNbr = repeatingElement(arr,n);
+	    int count = arr[0]+n-arr[n-1];
+	    cout<<repeatingNbr<<" "<<count<<"\n";
+	}
+	return 0;
+}
+int repeatingElement(int arr[],int n)
+{
+    int l = 0,r = n-1,m;
+    while(l<=r)
+    {
+        m = l + ((r-l)/2);
+        if((m>0 && arr[m] == arr[m-1]) || (m<n-1 && arr[m] == arr[m+1]))
+            return arr[m];
+        if(arr[0]+m == arr[m])
+            l = m+1;
+        else
+            r = m-1;
+    }
+}

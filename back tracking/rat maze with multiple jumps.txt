@@ -1,0 +1,36 @@
+//https://practice.geeksforgeeks.org/problems/rat-maze-with-multiple-jumps/1/?track=SPC-Back&batchId=154
+
+def isSafe(n,i,j,m):
+    if i<n and j<n and m[i][j]>0:
+        return True
+    return False
+    
+def solveRec(n,m,sol,i,j):
+    if i==n-1 and j==n-1:
+        sol[i][j]=1
+        return True
+    if isSafe(n,i,j,m)==True:
+        sol[i][j]=1
+        for k in range(1,m[i][j]+1):
+            if solveRec(n,m,sol,i,j+k)==True:
+                return True
+            if solveRec(n,m,sol,i+k,j)==True:
+                return True
+        sol[i][j]=0
+    return False
+        
+def solve(n,m):
+    '''
+    @param x : length and width of maze
+    @param m : maze of size x*x
+    
+    '''
+    sol = [[0 for i in range(n)] for j in range(n)]
+    if solveRec(n,m,sol,0,0)==True:
+        for i in range(n):
+            for j in range(n):
+                print(sol[i][j],end=" ")
+            print()
+    else:
+        print(-1)
+ 

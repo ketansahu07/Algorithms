@@ -1,0 +1,10 @@
+
+
+def digitalRoot(n):
+    '''
+    :param n: given number 
+    :return: digital root as defined
+    '''
+    if n<10:
+        return n
+    return digitalRoot(n//10 + n%10)

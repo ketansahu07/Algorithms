@@ -1,0 +1,29 @@
+//https://practice.geeksforgeeks.org/problems/intersection-of-two-sorted-array/1/?track=SPCF-Sorting&batchId=154
+//this can be done more efficiently using hashing
+
+void printIntersection(int a[], int b[], int N, int M) 
+{ 
+    int i=0,j=0;
+    int flag=0;
+    while(i<N && j<M)
+    {
+        if(i>0 && a[i-1]==a[i])
+        {
+            i++;
+            continue;
+        }
+        if(a[i]<b[j])
+            i++;
+        else if(a[i]>b[j])
+            j++;
+        else
+        {
+            flag=1;
+            cout<<a[i]<<" ";
+            i++;
+            j++;
+        }
+    }
+    if(flag==0)
+        cout<<-1;
+}

@@ -1,0 +1,25 @@
+//https://practice.geeksforgeeks.org/problems/subarray-with-given-sum/1/?track=SPCF-Searching&batchId=154
+
+void subarraySum(int a[], int n, int s){
+    
+    int sum = 0;
+    int j = 0;
+    int i = 0;
+    int flag = 0;
+    while(i<=n)
+    {
+        if(sum<s)
+            sum+=a[i++];
+        else if(sum>s)
+            sum-=a[j++];
+        else if(sum==s)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    if(flag==1)
+        cout<<j+1<<" "<<i;
+    else
+        cout<<-1;
+}

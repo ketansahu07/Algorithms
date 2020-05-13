@@ -1,0 +1,32 @@
+// dynamic programing can be used here but greedy works better.
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int notes[10]={1,2,5,10,20,50,100,200,500,2000};
+	    int n;
+	    cin>>n;
+	    int r;
+	    int countofnote[10]={0};
+	   // memset(countofnote,0,sizeof(countofnote));
+	    for(int i=9;i>=0;i--)
+	    {
+	        countofnote[i]=n/notes[i];
+	        if(countofnote[i]>0)
+	        {
+	            for(int j=0;j<countofnote[i];j++)
+	                {
+	                    n-=notes[i];
+	                    cout<<notes[i]<<" ";
+	                }
+	        }
+	    }
+	    cout<<endl;
+	}
+	return 0;
+}

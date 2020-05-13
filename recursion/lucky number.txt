@@ -1,0 +1,16 @@
+// https://practice.geeksforgeeks.org/problems/lucky-numbers2911/1/?track=SPCF-Recursion&batchId=154
+// https://www.geeksforgeeks.org/lucky-numbers/
+
+bool lucky(int n, int p)
+{
+    if(n%p==0)
+        return false;
+    else if(n<p)
+        return true;
+    else
+        return lucky(n-n/p,p+1);
+}
+
+bool isLucky(int n) {
+    return lucky(n,2);
+}

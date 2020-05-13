@@ -1,0 +1,30 @@
+# https://practice.geeksforgeeks.org/problems/black-and-white/1/?track=SPC-Back&batchId=154
+# this question ask the number of ways a black and a white knight can be placed in a NxM chess board
+
+def solve(m,n):
+    '''
+    :param m: number of rows
+    :param n: number of columns
+    :return: total possibilities
+    '''
+    pos = n*m*n*m-n*m
+    for i in range(n):
+        for j in range(m):
+            if i+2<n and j+1<m:
+                pos-=1
+            if i+2<n and j-1>=0:
+                pos-=1
+            if i-2>=0 and j+1<m:
+                pos-=1
+            if i-2>=0 and j-1>=0:
+                pos-=1
+            if j-2>=0 and i-1>=0:
+                pos-=1
+            if j-2>=0 and i+1<n:
+                pos-=1
+            if j+2<m and i+1<n:
+                pos-=1
+            if j+2<m and i-1>=0:
+                pos-=1
+                
+    return pos

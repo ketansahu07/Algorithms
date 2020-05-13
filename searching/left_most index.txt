@@ -1,0 +1,14 @@
+//https://practice.geeksforgeeks.org/problems/left-index/1/?track=SPCF-Searching&batchId=154
+
+int binarySearch(int a[],int low, int high, int key)
+{
+    if(low>high)
+        return -1;
+    int mid = low + (high-low)/2;
+    if(a[mid]==key && (mid==0 || a[mid-1]!=key))
+        return mid;
+    if(a[mid]>=key)
+        return binarySearch(a,low,mid-1,key);
+    else
+        return binarySearch(a,mid+1,high,key);
+}

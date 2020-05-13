@@ -1,0 +1,28 @@
+// https://practice.geeksforgeeks.org/problems/possible-words-from-phone-digits/1/?track=SPCF-Recursion&batchId=154
+
+const char hashTable[10][5] = {"", "", "abc", "def", "ghi", "jkl","mno", "pqrs", "tuv", "wxyz"}; 
+
+void words(int number[],int index,char output[],int n)
+{
+    int i;
+    if(index==n)
+    {
+        cout<<output<<" ";
+        return;
+    }
+    
+    for(i=0;i<strlen(hashTable[number[index]]);i++)
+    {
+        output[index]=hashTable[number[index]][i];
+        words(number,index+1,output,n);
+        if(number[index]==0 || number[index]==1)
+            return;
+    }
+}
+
+void possibleWords(int a[],int n)
+{
+    char result[n+1];
+    result[n]='\0';
+    words(a,0,result,n);
+}

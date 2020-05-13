@@ -1,0 +1,30 @@
+//https://practice.geeksforgeeks.org/problems/minimum-platforms/1/?track=SPC-Greedy&batchId=154
+//https://www.geeksforgeeks.org/minimum-number-platforms-required-railwaybus-station/
+
+int findPlatform(int arr[], int dep[], int n)
+{
+	sort(arr,arr+n);
+	sort(dep,dep+n);
+	
+	int platform = 1;
+	int result = 1;
+	int i=1,j=0;
+	
+	while(i<n && j<n)
+	{
+	    if(arr[i]<=dep[j])
+	    {
+	        platform++;
+	        i++;
+	        
+	        if(result<platform)
+	            result=platform;
+	    }
+	    else
+	    {
+	        platform--;
+	        j++;
+	    }
+	}
+	return result;
+}

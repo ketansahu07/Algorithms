@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,q;
+    cin>>n>>q;
+    int a[n];
+    for(int i=0;i<n;i++)
+        cin>>a[i];
+    int dpi[n][n];
+    int dpd[n][n];
+    memset(dpi,0,sizeof(dpi));
+    memset(dpd,0,sizeof(dpd));
+    int flag=0;
+    for(int i=0;i<n;i++)
+    {
+        flag=0;
+        for(int j=i+1;j<n;j++)
+        {
+            if(a[j-1]<a[j] && flag==0)
+            {
+                dpi[i][j]=dpi[i][j-1]+1;
+            }
+            else if(a[j-1]<a[j] && flag==1)
+            {
+                dpi[i][j]=dpi[i][j-1];
+            }
+            else if(a[j-1]>a[j])
+            {
+                dpi[i][j]=dpi[i][j-1];
+                flag=0;
+            }
+        }
+    }
+
+    for(int i=0;i<n;i++)
+    {
+        flag=0;
+        for(int j=i+1;j<n;j++)
+        {
+            if(a[j-1]>a[j] && flag==0)
+            {
+                dpd[i][j]=dpd[i][j-1]+1;
+            }
+            else if(a[j-1]>a[j] && flag==1)
+            {
+                dpd[i][j]=dpd[i][j-1];
+            }
+            else if(a[j-1]<a[j])
+            {
+                dpd[i][j]=dpd[i][j-1];
+                flag=0;
+            }
+        }
+    }
+
+    while(q--)
+    {
+        int j,k;
+        cin>>j>>k;
+        if(dpi[j-1][k-1]==dpd[j-1][k-1])
+            cout<<"YES"<<endl;
+        else
+            cout<<"NO"<<endl;
+    }
+    return 0;
+}

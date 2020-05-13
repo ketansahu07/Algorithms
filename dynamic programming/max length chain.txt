@@ -1,0 +1,31 @@
+// https://practice.geeksforgeeks.org/problems/max-length-chain/1
+// the logic is same as longest increasing subsequence but first we have to sort here in incresing order of first element
+// then apply the logic of LIS.
+
+bool sortbyfirst(struct val p, struct val q)
+{
+    return p.first<q.first;
+}
+
+int maxChainLen(struct val p[],int n)
+{
+    sort(p,p+n,sortbyfirst);
+    vector<int> v(n,1);
+    
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<i;j++)
+        {
+            if(p[j].second<p[i].first && v[i]<v[j]+1)
+                v[i]=v[j]+1;
+        }
+    }
+    int maxx=v[0];
+    for(auto i: v)
+    {
+        if(i>maxx)
+        maxx=i;
+    }
+    
+    return maxx;
+}

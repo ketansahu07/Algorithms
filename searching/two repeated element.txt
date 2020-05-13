@@ -1,0 +1,16 @@
+//hashing using unsorted_set will also work here
+//sorting the array and then searching should also work
+//https://practice.geeksforgeeks.org/problems/two-repeated-elements/1/?track=SPCF-Searching&batchId=154
+//https://www.geeksforgeeks.org/find-the-two-repeating-elements-in-a-given-array/
+
+void twoRepeated(int a[], int n){
+    for(int i=0;i<n+2;i++)
+    {
+        if(a[abs(a[i])]>0)
+        {
+            a[abs(a[i])]=-a[abs(a[i])];
+        }
+        else
+            cout<<abs(a[i])<<" ";
+    }
+}

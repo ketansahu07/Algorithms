@@ -1,0 +1,46 @@
+// https://practice.geeksforgeeks.org/problems/cutted-segments/0
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int maxseg(int s[], int n)
+{
+    int dp[4][n+1];
+    memset(dp,0,sizeof(dp));
+    for(int i=1;i<=3;i++)
+    {
+        for(int j=1;j<=n;j++)
+        {
+            if(j<s[i-1])
+                dp[i][j]=dp[i-1][j];
+            else if(j==s[i-1])
+                dp[i][j]=max(dp[i-1][j],1);
+            else
+            {
+                if(dp[i][j-s[i-1]]>0)
+                    dp[i][j]=max(1+dp[i][j-s[i-1]],dp[i-1][j]);
+                else
+                    dp[i][j]=dp[i-1][j];
+            }
+        }
+    }
+    return dp[3][n];
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    int seg[3];
+	    for(int i=0;i<3;i++)
+	        cin>>seg[i];
+	    sort(seg,seg+3);
+	   // for(int i=0;i<3;i++)
+	   // cout<<seg[i]<<" ";
+	    cout<<maxseg(seg,n)<<endl;
+	}
+	return 0;
+}

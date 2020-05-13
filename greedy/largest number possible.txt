@@ -1,0 +1,39 @@
+// https://practice.geeksforgeeks.org/problems/largest-number-possible/0/
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,m;
+	    cin>>n>>m;
+	    int temp=m;
+	    vector<int> ans;
+	    for(int i=0;i<n;i++)
+	    {
+	        if(temp>9)
+	        {
+	            ans.push_back(9);
+	            temp-=9;
+	        }
+	        else
+	        {
+	            ans.push_back(temp);
+	            temp-=temp;
+	        }
+	    }
+	    if(temp!=0 || m==0)
+	    cout<<"-1";
+	    else
+	    {
+	        for(auto i:ans)
+	        cout<<i;
+	    }
+	    cout<<endl;
+	}
+	return 0;
+}

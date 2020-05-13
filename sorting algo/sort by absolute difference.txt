@@ -1,0 +1,36 @@
+//https://practice.geeksforgeeks.org/problems/sort-by-absolute-difference/1/?track=SPCF-Sorting&batchId=154
+
+void countingsort(int a[],int n,int k,int ex)
+{
+    int count[10], output[n];
+    for(int i=0;i<10;i++)
+        count[i]=0;
+    for(int i=0;i<n;i++)
+        count[(abs(a[i]-k)/ex)%10]++;
+        
+    for(int i=1;i<10;i++)
+        count[i]=count[i]+count[i-1];
+    
+    for(int i=n-1;i>=0;i--)
+    {
+        output[count[(abs(a[i]-k)/ex)%10]-1]=a[i];
+        count[(abs(a[i]-k)/ex)%10]--;
+    }
+    for(int i=0;i<n;i++)
+        a[i]=output[i];
+}
+
+void sortABS(int a[],int n,int k)
+{
+    int mx=abs(a[0]-k);
+    for(int i=1;i<n;i++)
+    {
+        if(abs(a[i]-k)>mx)
+            mx=abs(a[i]-k);
+    }
+    
+    for(int ex=1;mx/ex>0;ex*=10)
+    {
+        countingsort(a,n,k,ex);
+    }
+}

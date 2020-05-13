@@ -1,0 +1,22 @@
+//https://practice.geeksforgeeks.org/problems/power-set-using-recursion/1/?track=SPCF-Recursion&batchId=154
+
+void subsetUtil(string s, vector<string> &v, string curr, int i)
+{
+    if(i==s.length())
+    {
+        v.push_back(curr);
+        return;
+    }
+    subsetUtil(s,v,curr,i+1);
+    subsetUtil(s,v,curr+s[i],i+1);
+}
+
+vector <string> powerSet(string s)
+{
+   vector<string> v;
+   int i=0;
+   string curr="";
+   subsetUtil(s,v,curr,i);
+   sort(v.begin(),v.end());
+   return v;
+}

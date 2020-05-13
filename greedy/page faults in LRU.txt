@@ -1,0 +1,44 @@
+//https://practice.geeksforgeeks.org/problems/page-faults-in-lru/0
+
+#include <iostream>
+using namespace std;
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n,frame;
+	    cin>>n>>frame;
+	    
+	    int pages[n];
+	    for(int i=0;i<n;i++)
+	        cin>>pages[i];
+	        
+	    int faults=frame;
+	    int j=0;
+	    int lru=0;
+	    for(int i=frame;i<n;i++)
+	    {
+	        
+	        for(j=1;j<=frame;j++)
+	        {
+	            if(pages[i]==pages[i-j])
+	            {
+	                pages[i-j]=pages[lru++];
+	                break;
+	            }
+	        }
+	        
+	        if(j>frame)
+	        {
+	            lru++;
+	            faults++;
+	        }
+	        
+	    }
+	    
+	    cout<<faults<<endl;
+	}
+	return 0;
+}

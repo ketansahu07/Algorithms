@@ -1,0 +1,73 @@
+//https://practice.geeksforgeeks.org/problems/allocate-minimum-number-of-pages/0/?track=SPCF-Searching&batchId=154
+//https://www.geeksforgeeks.org/allocate-minimum-number-pages/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool isPossible(int a[], int n, int m, long long cur_min)
+{
+    int studentsrequired = 1;
+    long long cur_sum = 0;
+    
+    for(int i=0;i<n;i++)
+    {
+        if(a[i]>cur_min)
+        return false;
+        
+        if(a[i]+cur_sum>cur_min)
+        {
+            studentsrequired++;
+            cur_sum = a[i];
+            
+            if(studentsrequired>m)
+                return false;
+        }
+        else
+        cur_sum+=a[i];
+    }
+    return true;
+}
+
+int allocateMin(int a[], int n, int m)
+{
+    long long sum = 0;
+    if(n<m)
+        return -1;
+        
+    for(int i=0;i<n;i++)
+        sum+=a[i];
+        
+    long long start=0,end=sum;
+    long long res = INT_MAX;
+    long long mid;
+    while(start<=end)
+    {
+        mid = start+(end-start)/2;
+        if(isPossible(a,n,m,mid))
+        {
+            res = min(res,mid);
+            
+            end = mid-1;
+        }
+        else
+            start = mid+1;
+    }
+    return res;
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    int a[n];
+	    for(int i=0;i<n;i++)
+	        cin>>a[i];
+        int m;
+        cin>>m;
+        cout<<allocateMin(a,n,m)<<endl;
+	}
+	return 0;
+}
