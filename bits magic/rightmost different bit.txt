@@ -1,0 +1,7 @@
+// https://practice.geeksforgeeks.org/problems/rightmost-different-bit-1587115621/1/?track=SPCF-Arrays&batchId=154
+
+int posOfRightMostDiffBit(int m, int n)
+{
+    int temp = m^n;
+    return log2(temp & -temp)+1;
+}

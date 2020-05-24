@@ -1,0 +1,10 @@
+//https://www.hackerrank.com/contests/codesprint5/challenges/is-fibo/submissions/code/1323629076
+// note the way to check for sqrt is perfect sqrt or not
+// if sqrt(n)%1==0 then it is a perfect square
+
+def solve(n):
+    r1 = math.sqrt(5*n**2-4)
+    r2 = math.sqrt(5*n**2+4)
+    if r1%1==0 or r2%1==0:
+        return "IsFibo"
+    return "IsNotFibo"

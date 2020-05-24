@@ -1,0 +1,29 @@
+## http://codeforces.com/problemset/problem/630/I
+
+def binexpo(a, b):
+	res = 1
+	while b>0:
+		if b&1:
+			res = res*a
+		a = a*a
+		b = b>>1
+	return res
+
+n = int(input())
+
+'''
+2 for two end positions of n successive cars
+4 for makes of those n cars
+3 for the adjacent car to those n cars
+4^(n-3) for rest of the cars
+'''
+x = 2*4*3*binexpo(4, n-3)
+
+'''
+n-3 for all the middle places that where n successive cars can be placed
+4 for makes of those n cars
+3^2 for the two adjacent cars of those n successive cars
+4^(n-4) for rest of the cars
+'''
+y = (n-3)*4*(3**2)*binexpo(4,n-4)
+print(x+y)

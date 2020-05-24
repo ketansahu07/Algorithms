@@ -1,0 +1,27 @@
+//https://practice.geeksforgeeks.org/problems/max-circular-subarray-sum-1587115620/1/?track=SPCF-Arrays&batchId=154
+
+def kadane(arr,n):
+    max_ending_here=-999999
+    max_so_far=-999999
+    for i in range(0,n):
+        max_ending_here = max(arr[i], max_ending_here+arr[i])
+        max_so_far = max(max_so_far, max_ending_here)
+    return max_so_far
+
+def circularSubarraySum(arr,n):
+    max_kadane = kadane(arr,n)
+    
+    max_wrap=0    # when the elements are wrapped
+    for i in range(0,n):
+        max_wrap+=arr[i]
+        arr[i] = -arr[i]
+        
+    reverse_kadane = kadane(arr,n)
+    if abs(reverse_kadane)==abs(max_wrap):
+        return max_kadane
+    max_wrap = max_wrap + reverse_kadane
+    
+    if max_kadane>max_wrap:
+        return max_kadane
+    else:
+        return max_wrap

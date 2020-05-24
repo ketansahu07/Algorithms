@@ -1,0 +1,18 @@
+//https://practice.geeksforgeeks.org/problems/ways-to-write-n-as-sum-1587115621/1/?track=SPC-DP&batchId=154
+
+// see this as you have coin set for every value below n except for n and you have to find the number of ways to make these values
+
+int countWays(int n)
+{
+    int dp[n+1];
+    memset(dp,0,sizeof(dp));
+    dp[0]=1;
+    for(int i=1;i<n;i++)	//here i works as coin set
+    {
+        for(int j=i;j<=n;j++)	//j works as the value that we need to make
+        {
+            dp[j] = dp[j]%mod + dp[j-i]%mod;
+        }
+    }
+    return dp[n]%mod;
+}

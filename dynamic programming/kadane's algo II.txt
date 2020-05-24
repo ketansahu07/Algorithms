@@ -1,0 +1,27 @@
+//https://practice.geeksforgeeks.org/problems/kadanes-algorithm-ii/1/?track=SPC-DP&batchId=154
+
+long long maximumSum(int arr[], int sizeOfArray)
+{
+    long long dp[sizeOfArray];
+    memset(dp,0,sizeof(dp));
+    dp[0] = arr[0];
+    dp[1] = max(arr[1],arr[0]);
+    for(int i=2;i<sizeOfArray;i++)
+    {
+        if((dp[i-1]>arr[i]) && dp[i-1]>(dp[i-2]+arr[i]))
+            dp[i] = dp[i-1];
+        else if(dp[i-2]+arr[i]>arr[i])
+            dp[i] = dp[i-2]+arr[i];
+        else
+            dp[i] = arr[i];
+            
+    }
+    long long ans = INT_MIN;
+    for(int i=0;i<sizeOfArray;i++)
+    {
+        // cout<<dp[i]<<" ";
+        ans = max(dp[i],ans);
+    }
+    // cout<<endl;
+    return ans;
+}
